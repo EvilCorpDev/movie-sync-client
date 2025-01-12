@@ -13,7 +13,7 @@ class MovieStorageClientImpl (
     private val downloadFilesLocation: String,
     private val serverUrl: String
 ) : MovieStorageClient {
-    override fun downloadFile(updateEvent: UpdateEvent, callback: CallbackFun) {
+    override fun downloadFile(updateEvent: UpdateEvent, callbackFun: CallbackFun) {
         val fileName = "${downloadFilesLocation}/${updateEvent.type}/${updateEvent.fileName}"
         val exists = exists(Path(fileName))
         if (!exists) {
@@ -22,7 +22,7 @@ class MovieStorageClientImpl (
                     Channels.newChannel(it).use { rbc ->
                         FileOutputStream(fileName).use { fos ->
                             fos.channel.transferFrom(rbc, 0, Long.MAX_VALUE)
-                            callback.apply(fileName)
+                            callbackFun.apply(fileName)
                         }
                     }
                 }
