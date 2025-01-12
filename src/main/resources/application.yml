@@ -1,0 +1,21 @@
+sqs:
+  consumer:
+    interval: 1m
+amazon:
+  sqs:
+    url: "http://localhost:4556"
+
+quarkus:
+  sqs:
+    devservices:
+      enabled: false
+  http:
+    port: 8081
+
+filesystem:
+  download:
+    location: "G:/downloads"
+
+movies:
+  server:
+    url: "http://localhost:8080"
