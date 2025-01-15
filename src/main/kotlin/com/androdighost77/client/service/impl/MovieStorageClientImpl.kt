@@ -14,7 +14,7 @@ class MovieStorageClientImpl (
     private val serverUrl: String
 ) : MovieStorageClient {
     override fun downloadFile(updateEvent: UpdateEvent, callbackFun: CallbackFun) {
-        val fileName = "${downloadFilesLocation}/${updateEvent.type}/${updateEvent.fileName}"
+        val fileName = "${downloadFilesLocation}/${updateEvent.type.folder}/${updateEvent.fileName}"
         val exists = exists(Path(fileName))
         if (!exists) {
             URL("${serverUrl}/files/${updateEvent.id}").openStream()
